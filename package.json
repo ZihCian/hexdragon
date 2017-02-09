@@ -1,0 +1,20 @@
+{
+  "name": "hexdragon",
+  "version": "1.0.0",
+  "description": "a simple js-based map editor",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aagapovjr/hexdragon.git"
+  },
+  "author": "aaa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aagapovjr/hexdragon/issues"
+  },
+  "homepage": "https://github.com/aagapovjr/hexdragon#readme"
+}

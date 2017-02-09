@@ -1,6 +1,6 @@
 const TILE_SIZE = 32;
-const MAP_SIZE_X = 10;
-const MAP_SIZE_Y = 10;
+const MAP_SIZE_X = 50;
+const MAP_SIZE_Y = 25;
 
 window.onload = function () {
 
@@ -37,16 +37,31 @@ window.onload = function () {
 	for (var tileX=0; tileX<MAP_SIZE_X; tileX++) {
 		for (var tileY=0; tileY<MAP_SIZE_Y; tileY++) {
 			context.drawTile(selectedBrushValue, tileX, tileY);
-			console.log(tileX, tileY);
 		}
 	}
-	
-	canvas.addEventListener('click', function (event) {
-		var rect = canvas.getBoundingClientRect();
-		var x = Math.floor((event.clientX-rect.left)/TILE_SIZE);
-		var y = Math.floor((event.clientY-rect.top)/TILE_SIZE);
-		context.drawTile(selectedBrushValue, x, y);
-	});
+
+	canvas.mouseIsDown = false;
+
+	function drawTileOnAction (event) {
+		// debugger;
+		if (event.type == 'click' || canvas.mouseIsDown == true) {
+			var rect = canvas.getBoundingClientRect();
+			var x = Math.floor((event.clientX-rect.left)/TILE_SIZE);
+			var y = Math.floor((event.clientY-rect.top)/TILE_SIZE);
+			context.drawTile(selectedBrushValue, x, y);
+		}
+	}
+
+	canvas.addEventListener('click', drawTileOnAction);
+	canvas.addEventListener('mousemove', drawTileOnAction);
+
+	canvas.addEventListener('mousedown', function (event) {
+		this.mouseIsDown = true;
+	})
+
+	canvas.addEventListener('mouseup', function (event) {
+		this.mouseIsDown = false;
+	})
 
 	document.getElementById('download').addEventListener('click', function (event) {
 		var img = canvas.toDataURL('image/png');
